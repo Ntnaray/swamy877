@@ -1,0 +1,15 @@
+pipeline {
+ agent {docker 
+ {image 'ubutu:latest
+ '}
+ }
+stage {
+    stage ('Build') {
+        steps {
+            sh "echo ${env.workspace}"
+            sh "ls -ltr"
+            sh "Docker/whileloop.sh"
+        }
+    }
+}
+}
