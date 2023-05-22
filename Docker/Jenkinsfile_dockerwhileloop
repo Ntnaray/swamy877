@@ -1,7 +1,6 @@
 pipeline {
  agent {docker 
- {image 'ubuntu:latest
- '}
+ {image 'ubuntu:latest'}
  }
 stage {
     stage ('Build') {
