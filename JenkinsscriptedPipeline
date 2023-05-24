@@ -2,7 +2,7 @@ node {
     stage ("Build"){
             sh "echo ${env.workspace}"
             sh "ls -ltr"
-            sh "./whileloop.sh"
+            sh "./whileloop2.sh"
             }
      }
         
