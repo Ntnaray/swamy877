@@ -1,8 +1,0 @@
-node {
-stage ('Build') {
-            sh "echo ${env.workspace}"
-            sh "ls -ltr"
-            sh "chmod +x Docker/whileloop.sh"
-            sh "Docker/whileloop.sh"
-}
-}

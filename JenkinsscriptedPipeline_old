@@ -1,7 +1,9 @@
 node {
     stage ("Build"){
             sh "echo ${env.workspace}"
-            echo "Hello World"
+            sh "ls -ltr"
+            sh "chmod +x whileloop2.sh"
+            sh "whileloop2.sh"
             }
      }
         
