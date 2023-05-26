@@ -3,10 +3,12 @@ node {
         DOCKERHUB_CREDENTIALS = credentials ('swamy-docker-hub')
         
     }
-    
+       stage('SCM Checkout') {
+        git url:'https://github.com/Ntnaray/swamy877.git', branch:'main', credentialsId:'6120597c-372c-4107-b092-a73af23bdb18'
+       }
        stage('Build') {
         
-            sh 'docker build -t swamy877/jenkins-docker-hub2 .'
+            sh 'docker build -t swamy877/jenkins-docker-hub2 . '
         
         }
        stage('login') {
