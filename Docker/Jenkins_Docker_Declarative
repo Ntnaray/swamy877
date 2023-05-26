@@ -4,21 +4,21 @@ environment {
     DOCKERHUB_CREDENTIALS = credentials ('swamy-docker-hub')
 }
 stages{
-    stage(Build) {
+    stage('Build') {
         steps{
             sh 'docker build -t hebbal/jenkins-docker-hub .'
         }
     }
 }
 
-    stage(login) {
+    stage('login') {
         steps{
             sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
         }
     }
 
 
-    stage(login) {
+    stage('Push') {
         steps{
             sh 'docker push hebbal/jenkins-docker-hub'
         }
