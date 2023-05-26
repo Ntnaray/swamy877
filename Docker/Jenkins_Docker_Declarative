@@ -10,14 +10,14 @@ stages {
         }
     }
 }
-stages {
+
     stage (login) {
         steps {
             sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
         }
     }
-}
-stages {
+
+
     stage (login) {
         steps {
             sh 'docker push hebbal/jenkins-docker-hub'
@@ -28,6 +28,6 @@ post {
         sh 'docker logout'
     }
 }
-}
+
 
 }
