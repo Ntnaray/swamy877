@@ -3,27 +3,27 @@ pipeline {
 environment {
     DOCKERHUB_CREDENTIALS = credentials ('swamy-docker-hub')
 }
-stages {
-    stage (Build) {
-        steps {
+stages{
+    stage(Build) {
+        steps{
             sh 'docker build -t hebbal/jenkins-docker-hub .'
         }
     }
 }
 
-    stage (login) {
-        steps {
+    stage(login) {
+        steps{
             sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
         }
     }
 
 
-    stage (login) {
-        steps {
+    stage(login) {
+        steps{
             sh 'docker push hebbal/jenkins-docker-hub'
         }
     }
-post {
+post{
     always{
         sh 'docker logout'
     }
