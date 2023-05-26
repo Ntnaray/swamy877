@@ -1,0 +1,29 @@
+node {
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials ('swamy-docker-hub')
+        
+    }
+    
+       stage('Build') {
+        
+            sh 'docker build -t swamy877/jenkins-docker-hub2 .'
+        
+        }
+       stage('login') {
+        
+            sh 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login -u $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        
+       }
+       stage('Push') {
+            
+                sh 'docker push swamy877/jenkins-docker-hub2'
+           
+        }
+       
+    
+    post {
+        always {
+            sh 'docker logout'
+        }
+    }
+}
