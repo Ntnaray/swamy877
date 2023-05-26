@@ -2,11 +2,12 @@ pipeline {
     agent any
     environment {
         DOCKERHUB_CREDENTIALS = credentials ('swamy-docker-hub')
+        
     }
     stages {
        stage('Build') {
         steps {
-            sh 'docker build -t hebbal/jenkins-docker-hub .'
+            sh 'docker build -t swamy877/jenkins-docker-hub1 .'
         }
         }
        stage('login') {
@@ -16,7 +17,7 @@ pipeline {
        }
        stage('Push') {
             steps {
-                sh 'docker push hebbal/jenkins-docker-hub'
+                sh 'docker push swamy877/jenkins-docker-hub1'
             }
         }
        
