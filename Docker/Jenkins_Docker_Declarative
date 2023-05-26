@@ -19,11 +19,10 @@ stages {
             sh 'docker push hebbal/jenkins-docker-hub'
         }
     }
-post{
+    post{
     always{
         sh 'docker logout'
     }
-}
-
-}
+    }
+   }
 }
