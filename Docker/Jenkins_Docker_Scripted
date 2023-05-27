@@ -6,7 +6,7 @@ node { checkout scm
     stage('Build and Push') {
         docker.withRegistry('', 'swamy-docker-hub')
         {
-            def CustomImage = docker.build('swamy877/jenkins-docker-hub5')
+            def CustomImage = docker.build('swamy877/jenkins-docker-hub6')
             CustomImage.push()
         }
     }
