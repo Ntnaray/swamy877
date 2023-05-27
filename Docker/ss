@@ -1,0 +1,19 @@
+node {
+    environment {
+        DOCKERHUB_CREDENTIALS = credentials ('swamy-docker-hub')
+        registry= 'swamy877/jenkins-docker-hub'
+    }
+   stage('SCM Checkout') {
+    git url:'https://github.com/Ntnaray/swamy877.git', branch:'main', credentialsId:'6120597c-372c-4107-b092-a73af23bdb18'
+   }
+  stage('Push') {
+        docker.withRegistry('', 'swamy-docker-hub')
+        {
+            def CustomImage = docker.build('swamy877/jenkins-docker-hub3')
+            CustomImage.push()
+        }
+            
+
+    }
+   
+}
