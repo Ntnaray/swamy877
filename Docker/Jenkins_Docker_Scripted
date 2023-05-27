@@ -1,12 +1,12 @@
 node { checkout scm
     environment {
         DOCKERHUB_CREDENTIALS = credentials ('swamy-docker-hub')
-         // registry= 'swamy877/jenkins-docker-hub'
+         // /registry= 'swamy877/jenkins-docker-hub'
     }
     stage('Build and Push') {
         docker.withRegistry('', 'swamy-docker-hub')
         {
-            def CustomImage = docker.build('swamy877/jenkins-docker-hub4')
+            def CustomImage = docker.build('swamy877/jenkins-docker-hub5')
             CustomImage.push()
         }
     }
