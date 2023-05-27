@@ -7,7 +7,7 @@ pipeline {
     stages {
        stage('Build') {
         steps {
-            sh 'docker build -t swamy877/jenkins-docker .'
+            sh 'docker build -t swamy877/jenkins1 .'
         }
         }
        stage('login') {
@@ -17,7 +17,7 @@ pipeline {
        }
        stage('Push') {
             steps {
-                sh 'docker push swamy877/jenkins-docker'
+                sh 'docker push swamy877/jenkins1'
             }
         }
        
