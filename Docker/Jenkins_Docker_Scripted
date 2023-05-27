@@ -1,31 +1,34 @@
-node {
+node { checkout scm
     environment {
         DOCKERHUB_CREDENTIALS = credentials ('swamy-docker-hub')
-        
+         // registry= 'swamy877/jenkins-docker-hub'
     }
-       stage('SCM Checkout') {
-        git url:'https://github.com/Ntnaray/swamy877.git', branch:'main', credentialsId:'6120597c-372c-4107-b092-a73af23bdb18'
-       }
-       stage('Build') {
-        
-            sh 'docker build -t swamy877/jenkins-docker-hub2 . '
-        
+    stage('Build and Push') {
+        docker.withRegistry('', 'swamy-docker-hub')
+        {
+            def CustomImage = docker.build('swamy877/jenkins-docker-hub4')
+            CustomImage.push()
         }
-       stage('login') {
+    }
+    //    stage('SCM Checkout') {
+    //     git url:'https://github.com/Ntnaray/swamy877.git', branch:'main', credentialsId:'6120597c-372c-4107-b092-a73af23bdb18'
+    //    }
+    //    stage('Build') {
         
-            sh -c 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login --username $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+    //         sh 'docker build -t swamy877/jenkins-docker-hub2 . '
         
-       }
-       stage('Push') {
+    //     }
+    //    stage('login') {
+        
+    //         sh -c 'echo $DOCKERHUB_CREDENTIALS_PSW | docker login --username $DOCKERHUB_CREDENTIALS_USR --password-stdin'
+        
+    //    }
+    //    stage('Push') {
             
-                sh 'docker push swamy877/jenkins-docker-hub2'
+    //             sh 'docker push swamy877/jenkins-docker-hub2'
            
-        }
-       
+//   }
     
-    post {
-        always {
-            sh 'docker logout'
-        }
-    }
+    
+    
 }
